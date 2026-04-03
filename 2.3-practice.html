@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>React Basics</title>
+  </head>
+  <body>
+    <div class="js-container"></div>
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+      function ProductDetails({name,price,discount,imgSrc}){
+        // 2. Change the wrapper to a <div> (without this, the image and
+          //    the "Add to Cart" button will be displayed on the same line).
+          //    Using a <div> (a block element) will put each product on a
+          //    new line.
+        return (
+          <div>
+            {/*
+              3. Set the src attribute to the value of the imageSrc prop.
+              4. Adjust the width of the image since they're too big.
+            */}
+            <img src={imgSrc} width="150"/>
+            <p>name</p>
+            {/*
+            {!discount && (
+              <p>Price: ${price}</p>
+            )}
+            {discount && (
+              <p><del>Price: ${price}</del></p>
+            )}
+
+            {discount && (
+              <p>Discount price: ${discount}</p>
+            )}
+
+            */}
+            {discount ? (
+              <>
+              <p><del>Price: ${price}</del></p>
+              <p>Discount price: ${discount}</p>
+              </>
+            ): (
+              <p>Price: ${price}</p>
+            )}
+            <button>Add to Cart</button>
+            
+          </div>
+        );
+      }
+      function App(){
+        return (
+          <>
+            <ProductDetails 
+              name="Cotton-socks"
+              price="10.90"
+              discount="5.45"
+              imgSrc="../images/2.3-cotton-socks.png"
+            />
+            <ProductDetails
+              name="Tennis balls"
+              price="6.00"
+              imgSrc="../images/2.3-plain-t-shirt.png"
+            />
+            <ProductDetails
+              name="Plain T-Shirt"
+              price="7.99"
+              imgSrc="../images/2.3-tennis-balls.png"
+            />
+          </>
+          
+        );
+      }
+      const container=document.querySelector('.js-container');
+      ReactDOM.createRoot(container).render(<App />);
+        
+    </script>
+  </body>
+</html>
