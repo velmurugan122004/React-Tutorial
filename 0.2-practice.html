@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<head>
+  <title>Practice React Basics</title>
+</head>
+<body>
+  <div class="js-container"></div>
+  <div class="js-container1"></div>
+  <div class="js-container2"></div>
+  <div class="js-container3"></div>
+  <div class="js-container4"></div>
+  <div class="js-container5"></div>
+  <div class="js-container6"></div>
+  <div class="js-container7"></div>
+
+  <script src="https://unpkg.com/supersimpledev/react.js"></script>
+  <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
+  <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+  <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+  <script type="text/babel">
+    //1a
+    const container = document.querySelector('.js-container');
+    const button=<button>Good job!</button>
+    ReactDOM.createRoot(container).render(button);
+    
+    //1b
+    const container1 = document.querySelector('.js-container1');
+    const paragraph=<p>My name is Vels</p>
+    ReactDOM.createRoot(container1).render(paragraph);
+
+    //1c
+    const container2 = document.querySelector('.js-container2');
+    const div=(
+      <div>
+        <p>Cotton Socks</p>
+        <p>Price:$10</p>
+        <button>Add to Cart</button>
+      </div>
+    );
+    ReactDOM.createRoot(container2).render(div);
+
+    //1d&1e
+    const container3 = document.querySelector('.js-container3');
+    const productCost=10+8*2;
+    console.log(productCost);
+    ReactDOM.createRoot(container3).render();
+    
+    const container4=document.querySelector('.js-container4');
+
+    const paragraph1=<p>Product cost:${productCost}</p>;
+    ReactDOM.createRoot(container4).render(paragraph1);
+
+    //1f
+    const conatiner5=document.querySelector('.js-container5');
+    const div1=(
+      <div>
+        <p>Product cost:${productCost}</p>
+        <p>Shipping cost:${5}</p>
+        <p>Total cost:${productCost+5}</p>
+        <button>Place your order</button>
+      </div>
+    );
+    ReactDOM.createRoot(conatiner5).render(div1);
+    //1g&1h
+    const today=dayjs().format('MMMM D');
+    console.log(today);
+    const container6 = document.querySelector('.js-container6');
+    const paragraph2=<p>Today is {today}</p>;
+    const root=ReactDOM.createRoot(container6);//multiple root use
+    root.render();
+    root.render(paragraph2);
+
+    //1i
+    const container7=document.querySelector('.js-container7');
+    const currenTime=dayjs().format('HH:mm:ss');
+    console.log(currenTime);
+    const paragraph3=<p>Current Time :{currenTime}</p>
+
+    const root1=ReactDOM.createRoot(container7);
+    root1.render();
+    
+    //1j
+    const interval=setInterval(()=>{
+      const paragraph4=<p>Current Time :{dayjs().format('HH:mm:ss')}</p>
+      root1.render(paragraph4)
+    },1000);
+    setTimeout(() => {
+      clearInterval(interval);
+    },60000);
+  </script>
+  
+</body>
