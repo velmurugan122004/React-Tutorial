@@ -23,8 +23,35 @@
             <button onClick={()=>{
               increaseCount()
             }}>Clicked {count} {(count<=1)?'time':'times'}</button>
+            
           </>
+          
         );
+     }
+     //3g,3h
+    function DisplayText(){
+      const [text,setText]=React.useState('');
+      function getText(event){
+        setText(event.target.value)
+      }
+      function reset(){
+        setText('');
+      }
+      function example(){
+        setText('Vels');
+      }
+      return(
+        <>
+          <input 
+            placeholder="Enter your Name"
+            onChange={getText}
+            value={text}
+          />
+          <button onClick={reset}>Reset</button>
+          <button onClick={example}>Example</button>
+          <p>Hello {text}!</p>
+        </>
+      );
      }
       function App(){
         const[count,setCount]=React.useState(0);
@@ -42,6 +69,9 @@
               setCount={setCount}
             />
             <button onClick={reset}>reset</button>
+            <div>
+              <DisplayText />
+            </div>
           </>
         );
       }
