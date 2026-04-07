@@ -20,30 +20,67 @@
     <script type="text/babel">
       function ChatInput({chatMessages,setChatMessages}){
         const [inputText,setInputText]=React.useState('');
+        const [isLoading,setIsLoading]=React.useState(false);
         function saveInputText(event){
           setInputText(event.target.value);
           //console.log(text);
         }
-        function sendMessage(){
+        async function sendMessage(){
           //console.log(inputText);
-          const newChatMesage=[
+          if (isLoading || inputText === '') {
+            return;
+          }
+          // Set isLoading to true at the start, and set it to
+          // false after everything is done.
+
+          setIsLoading(true);
+
+          // We can put this at the top of the function or
+          // after the first setChatMessages(). Both work.
+
+          setInputText('');
+
+          const newChatMessage=[
           ...chatMessages,{
             message:inputText,
             sender:'user',
             id:crypto.randomUUID()
           }
           ];
-          setChatMessages(newChatMesage);
-          const response=Chatbot.getResponse(inputText);
+          setChatMessages([
+            ...newChatMessage,
+            // This creates a temporary Loading... message.
+            // Because we don't save this message in newChatMessages,
+            // it will be remove later, when we add the response.
+            {
+              message: 'Loading...',
+              sender: 'robot',
+              id: crypto.randomUUID()
+            }
+          ]);
+
+
+
+          const response=await Chatbot.getResponseAsync(inputText);
           //console.log(response);
           setChatMessages([
-          ...newChatMesage,{
+          ...newChatMessage,{
             message:response,
             sender:'robot',
             id:crypto.randomUUID()
           }
           ]);
-          setInputText('');
+          //setInputText('');
+          setIsLoading(false);
+        }
+        function handleKeyDown(event){
+          //console.log(event.key)
+          if(event.key==='Enter'){
+            sendMessage();
+          }
+          if(event.key==='Escape'){
+            setInputText('');
+          }
         }
         return (
           //<input ></input>this are equal to below code
@@ -54,6 +91,7 @@
               size="30"
               onChange={saveInputText}
               value={inputText}
+              onKeyDown={handleKeyDown}
             />
             <button 
               onClick={sendMessage}
