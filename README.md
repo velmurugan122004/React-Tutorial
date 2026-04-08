@@ -116,10 +116,6 @@ ReactDOM.createRoot(container).render(div);
 
 ---
 
-## 📌 Next Step
-
-➡️ Lesson 2: Components & Reusable UI
-
 ---
 
 # 📚 Lesson 2: Components & Reusable UI (Chatbot Example)
@@ -267,10 +263,6 @@ ReactDOM.createRoot(container).render(<App />);
 ✔ Conditional rendering = dynamic UI
 
 ---
-
-Perfect buddy 🔥 this is your **Lesson 3 (State + Real Interaction)** — now your project becomes a real React app.
-
-Here’s your clean README 👇
 
 ---
 
@@ -478,4 +470,253 @@ In this lesson, you learned:
 * How to update UI dynamically
 * How to build a real working chatbot
 
+---
 
+# 📚 Lesson 4: Advanced State, Styling & Hooks (Styled Chatbot)
+
+---
+
+## 📂 Lesson Overview
+
+This lesson upgrades your chatbot into a **real-world UI** using:
+
+* CSS styling 🎨
+* Advanced hooks ⚛️
+* Better user experience 🚀
+
+👉 You will learn:
+
+* Styling React apps with CSS
+* Flexbox layout
+* Ternary operator in JSX
+* `useEffect`, `useRef` hooks
+* Auto-scroll feature
+* Loading state handling
+
+---
+
+## 🧠 Concepts Covered (Lesson 4)
+
+* CSS in React
+* Flexbox (`display: flex`)
+* Ternary operator (`condition ? A : B`)
+* Hooks:
+
+  * `useState`
+  * `useEffect`
+  * `useRef`
+* Async functions (`async/await`)
+* Event handling (`onKeyDown`)
+* Auto-scroll UI
+
+---
+
+## 🎨 1. Styling with CSS
+
+```css id="l4css1"
+.app-Cointainer{
+  max-width: 600px;
+  margin: auto;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+```
+
+👉 Centered layout
+👉 Full height app
+
+---
+
+```css id="l4css2"
+.chat-Input-Container{
+  display: flex;
+}
+```
+
+👉 Flexbox for input + button alignment
+
+---
+
+```css id="l4css3"
+.chat-message-user{
+  display: flex;
+  justify-content: end;
+}
+```
+
+👉 Align user messages to right
+
+---
+
+## ⚛️ 2. useState (Multiple States)
+
+```jsx id="l4c1"
+const [inputText,setInputText]=React.useState('');
+const [isLoading,setIsLoading]=React.useState(false);
+```
+
+👉 `inputText` → stores input
+👉 `isLoading` → prevents multiple clicks
+
+---
+
+## ⚡ 3. Async Chatbot (Real Interaction)
+
+```jsx id="l4c2"
+async function sendMessage(){
+  if (isLoading || inputText === '') return;
+
+  setIsLoading(true);
+  setInputText('');
+```
+
+👉 Prevent duplicate requests
+👉 Clear input immediately
+
+---
+
+```jsx id="l4c3"
+const response=await Chatbot.getResponseAsync(inputText);
+```
+
+👉 Async API call
+
+---
+
+```jsx id="l4c4"
+setIsLoading(false);
+```
+
+👉 Reset loading state
+
+---
+
+## ⌨️ 4. Event Handling (Keyboard Support)
+
+```jsx id="l4c5"
+function handleKeyDown(event){
+  if(event.key==='Enter'){
+    sendMessage();
+  }
+  if(event.key==='Escape'){
+    setInputText('');
+  }
+}
+```
+
+👉 Enter → send message
+👉 Escape → clear input
+
+---
+
+## 🔀 5. Ternary Operator in JSX
+
+```jsx id="l4c6"
+<div className={
+  sender === 'user'  
+    ? "chat-message-user" 
+    : "chat-message-robot"
+}>
+```
+
+👉 Cleaner alternative to if-else
+
+---
+
+## 🔄 6. useEffect (Auto Scroll)
+
+```jsx id="l4c7"
+React.useEffect(()=>{
+  const containerElem=chatMessagesRef.current;
+  if(containerElem){
+    containerElem.scrollTop=containerElem.scrollHeight;
+  }
+},[chatMessages]);
+```
+
+👉 Runs after messages update
+👉 Scrolls to latest message
+
+---
+
+## 📌 7. useRef (Access DOM)
+
+```jsx id="l4c8"
+const chatMessagesRef=React.useRef(null);
+```
+
+👉 Directly access HTML element
+
+---
+
+## 🔄 8. Loading Message UX
+
+```jsx id="l4c9"
+{
+  message: 'Loading...',
+  sender: 'robot',
+  id: crypto.randomUUID()
+}
+```
+
+👉 Temporary message while waiting for response
+
+---
+
+## 💻 Component Flow
+
+👉 `App`
+→ stores chat state
+
+👉 `ChatMessages`
+→ displays messages + auto-scroll
+
+👉 `ChatInput`
+→ handles input + events
+
+👉 `ChatMessage`
+→ styled UI
+
+---
+
+## ▶️ How to Run
+
+1. Save as `index.html`
+2. Open in browser
+3. Required files:
+
+* `chatbot.js`
+* `images/2.0-robot.png`
+* `images/2.0-user.png`
+
+---
+
+## 🔥 Output
+
+* Styled chatbot UI 💬
+* Messages aligned left/right
+* Auto scroll enabled
+* Enter key support ⌨️
+* Loading message ⏳
+
+---
+
+## 📌 Key Learning
+
+👉 Flexbox = layout control
+👉 Hooks = powerful React features
+👉 useEffect = lifecycle control
+👉 useRef = DOM access
+👉 Async = real-world apps
+
+---
+
+## 🔥 Lesson 4 Summary
+
+✔ Styled React app
+✔ Advanced hooks usage
+✔ Better UX (auto-scroll + loading)
+✔ Keyboard interactions
+
+---
