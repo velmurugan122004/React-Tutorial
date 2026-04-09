@@ -66,6 +66,14 @@
         overflow: scroll;
         scrollbar-width: none;
       }
+      .welcomeMsg{
+        text-align: center;
+        color: rgb(120,120,120);
+      }
+      .loading-spinner {
+        height: 40px;
+        margin: -15px;
+      }
     </style>
   </head>
   <!--
@@ -90,9 +98,10 @@
         }
         async function sendMessage(){
           //console.log(inputText);
-          if (isLoading || inputText === '') {
-            return;
-          }
+           // Clear the textbox at the top now because the Chatbot
+          // will take some time to load the response. We want
+          // to clear the textbox immediately rather waiting
+          // for the Chatbot to finish loading.
           // Set isLoading to true at the start, and set it to
           // false after everything is done.
 
@@ -116,7 +125,8 @@
             // Because we don't save this message in newChatMessages,
             // it will be remove later, when we add the response.
             {
-              message: 'Loading...',
+              message: <img src="images/loading-spinner.gif" 
+              className="loading-spinner" ></img>,
               sender: 'robot',
               id: crypto.randomUUID()
             }
@@ -186,7 +196,6 @@
       function ChatMessages({chatMessages}){
         const chatMessagesRef=React.useRef(null);
 
-
         React.useEffect(()=>{
           //console.log('updated');
           const containerElem=chatMessagesRef.current;
@@ -211,26 +220,14 @@
         );
       }
       function App(){
-        const [chatMessages,setChatMessages]=React.useState([{
-          message:"hello Chatbot", 
-          sender:"user",
-          id:"id1"
-        },{
-          message:"Hello! How can I help you?" , 
-          sender:"robot",
-          id:"id2"
-        },{
-          message:"today dates" ,
-          sender:"user",
-          id:"id3"
-        },{
-          message:"Today is April 3" ,
-          sender:"robot",
-          id:"id4"
-        }]);
+        const [chatMessages,setChatMessages]=React.useState([]);
         return (
           <div className="app-Cointainer">
-            
+            {
+              chatMessages.length==0 &&(
+                <p className="welcomeMsg">Welcome to the chatbot project! Send a message using the textbox below</p>
+              )
+            }
             <ChatMessages 
               chatMessages={chatMessages} 
             />
@@ -241,8 +238,6 @@
           </div>
         );
       }
-      
-
       const container = document.querySelector('.js-container');
       ReactDOM.createRoot(container).render(<App />);
     </script>
