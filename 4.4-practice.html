@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Practice problem</title>
+    <style>
+      body{
+        font-family: arial;
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+      .buttonClick{
+        background-color: rgb(25,135,84);
+        border: none;
+        cursor: pointer;
+        margin-right: 10px;
+        border-radius: 5px;
+        color: white;
+        padding :10px 15px;
+      }
+      .offbutton{
+        background-color: rgb(237, 94, 94);
+      }
+      .counterContainer{
+        display: flex;
+        justify-content: center;
+        height: 100vh;
+        background-color: rgb(200,200,200);
+        align-items: center;
+      }
+      .theme{
+        border-radius: 50px solid black;
+        
+      }
+    </style>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+    <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+      function Clicked(){
+        const [count,setCount]=React.useState(0);
+        const [auto,setAuto]=React.useState(true);
+        const buttonRef=React.useRef();
+        const intervalRef = React.useRef(null); // ✅ store interval
+        function increaseCount(){
+          //setCount(count+1);
+          setCount(prev => prev + 1);
+        }
+        function resetCount(){
+          setCount(0);
+        }
+        function autoCount(){
+          const check=auto?false:true;
+          setAuto(check);
+        }
+        React.useEffect(()=>{
+          if(!auto){
+            intervalRef.current=setInterval(()=>{
+              /*const buttonElem=buttonRef.current;
+              buttonElem.click();*/
+              setCount(prev => prev + 1);
+            },1000);
+          }
+          else{
+            clearInterval(intervalRef.current);
+          }
+          return () => clearInterval(intervalRef.current);
+        },[auto]);
+        return(
+          <div className="counterContainer">
+            <button onClick={increaseCount}
+            ref={buttonRef} className='buttonClick'>Clicked {count} {count<=1?'time':'times'}</button>
+            <button onClick={resetCount}className='buttonClick'>Reset</button>
+            <button onClick={autoCount}className={`buttonClick ${auto?'onbutton':'offbutton'}`}>{auto?'Auto count':'Stop'}</button>
+          </div>
+        );
+      }
+  function Theme(){
+    const [dark,setDark] = React.useState(false);
+
+    function toggleTheme(){
+        setDark(prev => !prev);
+      }
+
+      React.useEffect(()=>{
+        if(dark){
+          document.body.style.backgroundColor = "black";
+          document.body.style.color = "white";
+        } else {
+          document.body.style.backgroundColor = "white";
+          document.body.style.color = "black";
+        }
+      },[dark]); // runs when dark changes
+
+      return(
+        <>
+          <button onClick={toggleTheme} className='theme'>
+            {dark ? "Light Mode" : "Dark Mode"}
+          </button>
+        </>
+      );
+  }
+      function App(){
+        return (
+          <>
+            <p>Hello ,welcome to my website</p>
+            <Theme />
+            <Clicked />
+            
+          </>
+        );
+      }
+      const container = document.querySelector('.js-container');
+      ReactDOM.createRoot(container).render(<App />);
+    </script>
+  </body>
+</html>
