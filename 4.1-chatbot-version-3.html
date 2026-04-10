@@ -193,16 +193,25 @@
           </div>
         );
       }
-      function ChatMessages({chatMessages}){
-        const chatMessagesRef=React.useRef(null);
-
-        React.useEffect(()=>{
-          //console.log('updated');
-          const containerElem=chatMessagesRef.current;
-          if(containerElem){
-            containerElem.scrollTop=containerElem.scrollHeight;
+      function useAutoScroll(dependencies){
+         // It's highly recommend to rename this to something
+        // more generic like containerRef. This will make the
+        // code make more sense if we ever reuse this code in
+        // other components.
+        const containerRef = React.useRef(null);
+        React.useEffect(() => {
+          const containerElem = containerRef.current;
+          if (containerElem) {
+            containerElem.scrollTop = containerElem.scrollHeight;
           }
-        },[chatMessages])
+        }, dependencies);
+
+        return containerRef;
+      }
+      function ChatMessages({chatMessages}){
+        const chatMessagesRef=useAutoScroll([chatMessages]);
+
+        
         return (
           <div className="chat-messages-container" ref={chatMessagesRef}>
             {/*<button onClick={sendMessage}>Send Message</button>*/}
