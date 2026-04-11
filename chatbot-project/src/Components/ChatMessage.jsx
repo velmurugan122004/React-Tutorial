@@ -1,5 +1,5 @@
 import RobotProfile from '../assets/2.0-robot.png'
-import UserProfile from '../assets/2.0-user.png'
+import UserProfile from '../assets/profile-1.jpg'
 import './ChatMessage.css'
 function ChatMessage({message,sender}){
     return (
