@@ -1,23 +1,26 @@
 import { useRef,useEffect } from "react";
 import ChatMessage from './ChatMessage'
 import './ChatMessages.css'
-function useAutoScroll(dependencies){
+function useAutoScroll(chatMessages){
       // It's highly recommend to rename this to something
     // more generic like containerRef. This will make the
     // code make more sense if we ever reuse this code in
     // other components.
     const containerRef = useRef(null);
+    //console.log(containerRef);
+    //console.log(chatMessages);
     useEffect(() => {
       const containerElem = containerRef.current;
+      //console.log("rerender",containerElem);
       if (containerElem) {
         containerElem.scrollTop = containerElem.scrollHeight;
       }
-    }, dependencies);
+    }, [chatMessages]);
 
     return containerRef;
   }
 function ChatMessages({chatMessages}){
-    const chatMessagesRef=useAutoScroll([chatMessages]);
+    const chatMessagesRef=useAutoScroll(chatMessages);
     return (
       <div className="chat-messages-container" ref={chatMessagesRef}>
         {/*<button onClick={sendMessage}>Send Message</button>*/}
