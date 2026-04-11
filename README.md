@@ -719,4 +719,213 @@ const chatMessagesRef=React.useRef(null);
 ✔ Better UX (auto-scroll + loading)
 ✔ Keyboard interactions
 
+# 📚 Lesson 5: Proper React Setup (Vite, NPM & Project Structure)
+
 ---
+
+## 📂 Lesson Overview
+
+In this lesson, you move from **basic HTML setup → real industry React setup**.
+
+👉 You will learn:
+
+* How to create a real React project
+* Using command line tools
+* Installing packages with NPM
+* Using Vite for fast development
+* Organizing code into modules
+
+---
+
+## 🧠 Concepts Covered (Lesson 5)
+
+* Command Line (CLI)
+* NPM (Node Package Manager)
+* Vite (modern React setup tool)
+* ESLint (code quality tool)
+* JavaScript Modules (`import/export`)
+* File structure (`.jsx`, `.css`)
+
+---
+
+## ⚙️ 1. What is Command Line?
+
+👉 Command Line = typing commands to control your computer
+
+Examples:
+
+```bash id="l5c1"
+cd desktop
+mkdir react-app
+```
+
+👉 Faster than using mouse
+
+---
+
+## 📦 2. What is NPM?
+
+👉 NPM = Node Package Manager
+
+Used to:
+
+* Install libraries
+* Manage dependencies
+* Run scripts
+
+Example:
+
+```bash id="l5c2"
+npm install
+```
+
+---
+
+## ⚡ 3. What is Vite?
+
+👉 Vite is a **modern tool** to create React apps quickly
+
+✔ Faster than older tools
+✔ Instant reload (HMR)
+✔ Lightweight
+
+---
+
+## 🚀 4. Create React App using Vite
+
+```bash id="l5c3"
+npm create vite@latest
+```
+
+Then:
+
+```bash id="l5c4"
+cd your-project-name
+npm install
+npm run dev
+```
+
+👉 Opens app in browser
+
+---
+
+## 📁 5. Project Structure
+
+```
+src/
+ ├── App.jsx
+ ├── main.jsx
+ ├── components/
+ │    ├── ChatInput.jsx
+ │    ├── ChatMessage.jsx
+ │    ├── ChatMessages.jsx
+ ├── styles/
+ │    ├── ChatInput.css
+ │    ├── ChatMessage.css
+```
+
+👉 Clean and scalable structure
+
+---
+
+## 🔗 6. JavaScript Modules
+
+```jsx id="l5c5"
+// Export
+export default ChatInput;
+```
+
+```jsx id="l5c6"
+// Import
+import ChatInput from './components/ChatInput';
+```
+
+👉 Split code into multiple files
+
+---
+
+## 🧹 7. ESLint (Code Quality)
+
+👉 ESLint helps:
+
+* Find errors
+* Improve code quality
+* Follow best practices
+
+Example warning:
+
+```
+Unused variable detected
+```
+
+---
+
+## 🧩 8. Separate Components & CSS
+
+👉 Each component gets its own file:
+
+```jsx id="l5c7"
+ChatInput.jsx
+ChatInput.css
+```
+
+👉 Benefits:
+
+* Clean code
+* Easy debugging
+* Reusable components
+
+---
+
+## 🔄 9. Move Chatbot into Vite Project
+
+👉 Copy your previous chatbot code into:
+
+* `App.jsx`
+* Components folder
+
+👉 Convert:
+
+* `<script>` → React files
+* Inline CSS → separate `.css`
+
+---
+
+## ▶️ How to Run
+
+```bash
+npm install
+npm run dev
+```
+
+👉 Open browser → see your app
+
+---
+
+## 🔥 Output
+
+* Fully working React app
+* Fast development server
+* Organized file structure
+
+---
+
+## 📌 Key Learning
+
+👉 CLI = control system
+👉 NPM = manage packages
+👉 Vite = fast React setup
+👉 Modules = clean code
+👉 ESLint = better quality
+
+---
+
+## 🔥 Lesson 5 Summary
+
+✔ Setup real React environment
+✔ Use modern tools (Vite)
+✔ Organize project like industry
+✔ Split code into reusable files
+
+---
+
