@@ -6,7 +6,7 @@ import ChatMessages from './Components/ChatMessages.jsx';
 //import {time} from "https://unpkg.com/supersimpledev/dayjs.js";
 import dayjs from 'dayjs';
   function App(){
-    const [chatMessages,setChatMessages]=useState([]);
+    const [chatMessages,setChatMessages]=useState(JSON.parse(localStorage.getItem('messages'))||[]);
     useEffect(()=>{
       Chatbot.addResponses({
         'goodbye':'Goodbyee. Have a great day buddy',
@@ -22,6 +22,9 @@ import dayjs from 'dayjs';
         }
       });
     },[]);
+    useEffect(() => {
+      localStorage.setItem('messages', JSON.stringify(chatMessages));
+    }, [chatMessages]);
     return (
       <div className="app-Cointainer">
         {

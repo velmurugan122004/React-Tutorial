@@ -24,3 +24,13 @@
   height: 40px;
   margin: -15px;
 }
+.clear-chat{
+  border-radius:10px;
+  border: none;
+  background-color: rgb(196, 192, 192);
+  padding: 12px 15px;
+  margin-left: 5px;
+  font-family: Arial;
+  cursor: pointer;
+  font-size: 15px;
+}
