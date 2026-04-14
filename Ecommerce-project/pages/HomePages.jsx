@@ -1,8 +1,9 @@
 import './header.css';
 import './HomePages.css'
-export function HompePages(){
+export function HomePages(){
   return(
     <>
+    <title>Ecommerce Project</title>
       <div className="header">
         <div className="left-section">
           <a href="index.html" className="header-link">
