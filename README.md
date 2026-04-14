@@ -927,5 +927,195 @@ npm run dev
 ✔ Organize project like industry
 ✔ Split code into reusable files
 
+# 📚 Lesson 6: Routing in React (Multiple Pages)
+
 ---
+
+## 📂 Lesson Overview
+
+In this lesson, you learn how to create **multiple pages in React** using routing.
+
+👉 You will learn:
+
+* What is routing
+* How to use `BrowserRouter`
+* How to define routes
+* How to navigate between pages
+* Build multi-page React apps
+
+---
+
+## 🧠 Concepts Covered (Lesson 6)
+
+* Routing in React
+* `BrowserRouter`
+* `Routes` & `Route`
+* `Link` for navigation
+* Multiple page structure
+
+---
+
+## 🌐 1. What is Routing?
+
+👉 Routing = switching between different pages **without reloading**
+
+Example:
+
+* `/` → Home page
+* `/chat` → Chatbot page
+
+---
+
+## ⚛️ 2. Install React Router
+
+```bash
+npm install react-router-dom
+```
+
+---
+
+## 🧩 3. Setup BrowserRouter
+
+```jsx id="l6c1"
+import { BrowserRouter } from 'react-router-dom';
+
+createRoot(document.getElementById('root')).render(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>
+);
+```
+
+👉 Wrap your app with `BrowserRouter`
+
+---
+
+## 🛣️ 4. Define Routes
+
+```jsx id="l6c2"
+import { Routes, Route } from 'react-router-dom';
+
+function App(){
+  return (
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/chat" element={<Chatbot />} />
+    </Routes>
+  );
+}
+```
+
+👉 Each `Route` = one page
+
+---
+
+## 🔗 5. Navigation using Link
+
+```jsx id="l6c3"
+import { Link } from 'react-router-dom';
+
+function Navbar(){
+  return (
+    <>
+      <Link to="/">Home</Link>
+      <Link to="/chat">Chatbot</Link>
+    </>
+  );
+}
+```
+
+👉 No page reload
+👉 Smooth navigation
+
+---
+
+## 📁 6. Project Structure
+
+```
+src/
+ ├── App.jsx
+ ├── main.jsx
+ ├── pages/
+ │    ├── Home.jsx
+ │    ├── Chatbot.jsx
+ ├── components/
+ │    ├── Navbar.jsx
+```
+
+---
+
+## 💻 Example Pages
+
+### Home Page
+
+```jsx id="l6c4"
+function Home(){
+  return <h1>Welcome to Home Page</h1>;
+}
+```
+
+---
+
+### Chatbot Page
+
+```jsx id="l6c5"
+function Chatbot(){
+  return <h1>Chatbot Page</h1>;
+}
+```
+
+---
+
+## 🔄 7. Full App Flow
+
+👉 `BrowserRouter`
+→ Enables routing
+
+👉 `Routes`
+→ Holds all pages
+
+👉 `Route`
+→ Defines each page
+
+👉 `Link`
+→ Navigation
+
+---
+
+## ▶️ How to Run
+
+```bash
+npm run dev
+```
+
+👉 Open:
+
+* `/` → Home
+* `/chat` → Chatbot
+
+---
+
+## 🔥 Output
+
+* Multiple pages working
+* Navigation without refresh
+* Clean page structure
+
+---
+
+## 📌 Key Learning
+
+👉 Routing = multi-page apps
+👉 BrowserRouter = enables routing
+👉 Routes/Route = define pages
+👉 Link = navigation
+
+---
+
+## 🔥 Lesson 6 Summary
+
+✔ Created multi-page React app
+✔ Used React Router
+✔ Navigated between pages
+✔ Structured app like real projects
 
