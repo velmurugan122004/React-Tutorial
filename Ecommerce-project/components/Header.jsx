@@ -1,37 +1,42 @@
-import { Link } from 'react-router';
+//import { Link } from 'react-router'; The below import was used instead of the above one
+import { NavLink } from 'react-router';
 import './header.css'
+import CartIcon from '../src/assets/images/icons/cart-icon.png';
+import SearchIcon from '../src/assets/images/icons/search-icon.png';
+import LogoWhite from '../src/assets/images/logo-white.png';
+import MobileLogoWhite from '../src/assets/images/mobile-logo-white.png';
 export function Header(){
   return (
     <>
       <div className="header">
         <div className="left-section">
-          <a href="/" className="header-link">
+          <NavLink to="/" className="header-link">
             <img className="logo"
-              src="images/logo-white.png" />
+              src={LogoWhite} />
             <img className="mobile-logo"
-              src="images/mobile-logo-white.png" />
-          </a>
+              src={MobileLogoWhite} />
+          </NavLink>
         </div>
 
         <div className="middle-section">
           <input className="search-bar" type="text" placeholder="Search" />
 
           <button className="search-button">
-            <img className="search-icon" src="images/icons/search-icon.png" />
+            <img className="search-icon" src={SearchIcon} />
           </button>
         </div>
 
         <div className="right-section">
-          <Link className="orders-link header-link" to="/Orders">
+          <NavLink className="orders-link header-link" to="/Orders">
 
             <span className="orders-text">Orders</span>
-          </Link>
+          </NavLink>
 
-          <Link className="cart-link header-link" to="/Checkout">
-            <img className="cart-icon" src="images/icons/cart-icon.png" />
+          <NavLink className="cart-link header-link" to="/Checkout">
+            <img className="cart-icon" src={CartIcon} />
             <div className="cart-quantity">3</div>
             <div className="cart-text">Cart</div>
-          </Link>
+          </NavLink>
         </div>
       </div>    
     </>

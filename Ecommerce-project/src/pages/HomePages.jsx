@@ -1,9 +1,10 @@
-import { Header } from '../components/Header';
+import { Header } from '../../components/Header';
 import './HomePages.css'
 export function HomePages(){
   return(
     <>
     <title>Ecommerce Project</title>
+    <link rel='icon' type='image/svg.xml' href='home-favicon.png' />
       <Header />
 
       <div className="home-page">
