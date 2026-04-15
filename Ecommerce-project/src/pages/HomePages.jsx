@@ -1,18 +1,23 @@
 import axios from 'axios';
+import { useEffect,useState } from 'react';
 import { Header } from '../../components/Header';
 import './HomePages.css';
-import {products} from "../../../ecommerce-project-main/data/products"
+//import {products} from "../../../ecommerce-project-main/data/products"
 export function HomePages(){
+  const [products,setProducts]=useState([]);
   /*fetch('http://localhost:3000/api/products').then((response)=>{
     //console.log(response);
     return response.json();
   }).then((data)=>{
       console.log(data);
   }); instead of uing above to below code*/
-  axios.get('http://localhost:3000/api/products').then((response)=>{
-    console.log(response.data);
-    //return response.json();
-  })
+  useEffect(()=>{
+      axios.get('http://localhost:3000/api/products')
+      .then((response)=>{
+      //console.log(response.data);
+      setProducts(response.data);
+    })
+  },[]);
   return(
     <>
     <title>Ecommerce Project</title>
