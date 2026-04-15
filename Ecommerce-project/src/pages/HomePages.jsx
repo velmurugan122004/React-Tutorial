@@ -1,13 +1,18 @@
+import axios from 'axios';
 import { Header } from '../../components/Header';
 import './HomePages.css';
 import {products} from "../../../ecommerce-project-main/data/products"
 export function HomePages(){
-  fetch('http://localhost:3000/api/products').then((response)=>{
+  /*fetch('http://localhost:3000/api/products').then((response)=>{
     //console.log(response);
     return response.json();
   }).then((data)=>{
       console.log(data);
-  });
+  }); instead of uing above to below code*/
+  axios.get('http://localhost:3000/api/products').then((response)=>{
+    console.log(response.data);
+    //return response.json();
+  })
   return(
     <>
     <title>Ecommerce Project</title>
