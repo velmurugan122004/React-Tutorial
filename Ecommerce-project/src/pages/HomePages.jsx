@@ -3,9 +3,9 @@ import { useEffect,useState } from 'react';
 import { Header } from '../../components/Header';
 import './HomePages.css';
 //import {products} from "../../../ecommerce-project-main/data/products"
-export function HomePages(){
+export function HomePages({cart}){
   const [products,setProducts]=useState([]);
-  const [cart,setCart]=useState([]);
+  
   /*fetch('http://localhost:3000/api/products').then((response)=>{
     //console.log(response);
     return response.json();
@@ -18,10 +18,7 @@ export function HomePages(){
     //console.log(response.data);
     setProducts(response.data);
     });
-    axios.get('/api/cart-items').then((response)=>{
-      console.log(response.data);
-      setCart(response.data);
-    });
+    
     
 
   },[]);
