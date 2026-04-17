@@ -1118,4 +1118,401 @@ npm run dev
 ✔ Used React Router
 ✔ Navigated between pages
 ✔ Structured app like real projects
+Got it 👍 — here’s your next one properly structured.
 
+---
+
+# 📚 Lesson 7: Advanced Routing (Params, Nested Routes, Protected Routes)
+
+---
+
+## 📂 Lesson Overview
+
+This lesson takes routing to the **next level (real-world apps)**.
+
+👉 You will learn:
+
+* Dynamic routes (URL parameters)
+* Nested routes (layouts inside pages)
+* Protected routes (login-based access)
+
+---
+
+## 🧠 Concepts Covered (Lesson 7)
+
+* URL Params (`:id`)
+* `useParams()` hook
+* Nested Routing
+* Layout structure
+* Protected Routes (authentication logic)
+
+---
+
+## 🔢 1. Dynamic Routes (URL Params)
+
+👉 Used when data changes based on URL
+
+Example:
+
+```
+/user/101
+/user/202
+```
+
+---
+
+### Route Setup
+
+```jsx id="l7c1"
+<Route path="/user/:id" element={<User />} />
+```
+
+---
+
+### Access Params
+
+```jsx id="l7c2"
+import { useParams } from 'react-router-dom';
+
+function User(){
+  const { id } = useParams();
+
+  return <h1>User ID: {id}</h1>;
+}
+```
+
+👉 `:id` → dynamic value
+
+---
+
+## 🧩 2. Nested Routes
+
+👉 Used for layouts (Dashboard, Admin panel)
+
+---
+
+### Setup Nested Routes
+
+```jsx id="l7c3"
+<Route path="/dashboard" element={<Dashboard />}>
+  <Route path="profile" element={<Profile />} />
+  <Route path="settings" element={<Settings />} />
+</Route>
+```
+
+---
+
+### Dashboard Layout
+
+```jsx id="l7c4"
+import { Outlet, Link } from 'react-router-dom';
+
+function Dashboard(){
+  return (
+    <>
+      <h1>Dashboard</h1>
+
+      <Link to="profile">Profile</Link>
+      <Link to="settings">Settings</Link>
+
+      <Outlet />
+    </>
+  );
+}
+```
+
+👉 `<Outlet />` = where child routes render
+
+---
+
+## 🔐 3. Protected Routes
+
+👉 Restrict access (login required)
+
+---
+
+### Create Protected Route
+
+```jsx id="l7c5"
+import { Navigate } from 'react-router-dom';
+
+function ProtectedRoute({ children }){
+  const isLoggedIn = false; // change to true for testing
+
+  if(!isLoggedIn){
+    return <Navigate to="/" />;
+  }
+
+  return children;
+}
+```
+
+---
+
+### Use Protected Route
+
+```jsx id="l7c6"
+<Route 
+  path="/dashboard" 
+  element={
+    <ProtectedRoute>
+      <Dashboard />
+    </ProtectedRoute>
+  }
+/>
+```
+
+👉 If not logged in → redirect
+
+---
+
+## 🔗 4. Navigation Example
+
+```jsx id="l7c7"
+<Link to="/user/101">User 101</Link>
+<Link to="/dashboard/profile">Profile</Link>
+```
+
+---
+
+## 📁 5. Updated Project Structure
+
+```
+src/
+ ├── App.jsx
+ ├── pages/
+ │    ├── Home.jsx
+ │    ├── User.jsx
+ │    ├── Dashboard.jsx
+ │    ├── Profile.jsx
+ │    ├── Settings.jsx
+ ├── components/
+ │    ├── ProtectedRoute.jsx
+```
+
+---
+
+## ▶️ How to Run
+
+```bash
+npm run dev
+```
+
+---
+
+## 🔥 Output
+
+* Dynamic user pages
+* Dashboard with nested pages
+* Protected routes working
+
+---
+
+## 📌 Key Learning
+
+👉 Params = dynamic data
+👉 Nested routes = layouts
+👉 Protected routes = security
+
+---
+
+## 🔥 Lesson 7 Summary
+
+✔ Dynamic routing using params
+✔ Nested routing with layouts
+✔ Protected routes for authentication
+✔ Real-world routing structure
+
+---
+
+# 📚 Lesson 8: Backend Integration & Data Fetching
+
+---
+
+## 📂 Lesson Overview
+
+In this lesson, you connect your React app to a **backend** and work with real data.
+
+👉 You will learn:
+
+* What backend is
+* How to fetch data
+* Using Axios for API calls
+* Async/Await in React
+* Rendering backend data in UI
+
+---
+
+## 🧠 Concepts Covered (Lesson 8)
+
+* Backend basics
+* API (Application Programming Interface)
+* Data Fetching
+* Axios
+* Async/Await
+* Component-based structure
+
+---
+
+## 🖥️ 1. What is Backend?
+
+👉 Backend = manages data and logic
+
+Examples:
+
+* Database storage
+* User authentication
+* API responses
+
+👉 Frontend (React) talks to backend using APIs
+
+---
+
+## 🔌 2. Setup Backend (Basic Idea)
+
+👉 Backend can be built using:
+
+* Node.js + Express
+* Java Spring Boot
+* Python (Django / Flask)
+
+👉 Example API:
+
+```
+GET /messages
+```
+
+Returns:
+
+```json
+[
+  { "message": "Hello", "sender": "user" },
+  { "message": "Hi!", "sender": "robot" }
+]
+```
+
+---
+
+## 📡 3. Data Fetching in React
+
+👉 Fetch data from backend when component loads
+
+---
+
+## ⚡ 4. Using Axios
+
+👉 Install Axios:
+
+```bash id="l8c1"
+npm install axios
+```
+
+---
+
+### Fetch Data Example
+
+```jsx id="l8c2"
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+
+function App(){
+  const [messages,setMessages]=useState([]);
+
+  useEffect(()=>{
+    axios.get('http://localhost:3000/messages')
+      .then((response)=>{
+        setMessages(response.data);
+      });
+  },[]);
+
+  return <div>{messages.length} messages</div>;
+}
+```
+
+👉 Runs once when component loads
+
+---
+
+## ⏳ 5. Async/Await (Cleaner Code)
+
+```jsx id="l8c3"
+useEffect(()=>{
+  async function fetchData(){
+    const response = await axios.get('http://localhost:3000/messages');
+    setMessages(response.data);
+  }
+
+  fetchData();
+},[]);
+```
+
+👉 Looks like normal code
+👉 Easier to read
+
+---
+
+## 🧩 6. Render Data in UI
+
+```jsx id="l8c4"
+{messages.map((msg)=>{
+  return (
+    <div key={msg.id}>
+      {msg.message}
+    </div>
+  );
+})}
+```
+
+👉 Dynamic UI from backend data
+
+---
+
+## 🧱 7. Split into Components
+
+👉 Example:
+
+* `App.jsx` → fetch data
+* `ChatMessages.jsx` → display messages
+* `ChatInput.jsx` → send messages
+
+👉 Clean & reusable structure
+
+---
+
+## ▶️ How to Run
+
+1. Start backend server
+2. Run React app
+
+```bash
+npm run dev
+```
+
+---
+
+## 🔥 Output
+
+* Data loaded from backend
+* Messages displayed dynamically
+* Real-world app behavior
+
+---
+
+## 📌 Key Learning
+
+👉 Backend = data source
+👉 Axios = API calls
+👉 Async/Await = clean async code
+👉 useEffect = run on load
+👉 React renders backend data
+
+---
+
+## 🔥 Lesson 8 Summary
+
+✔ Connected React with backend
+✔ Fetched real data
+✔ Used Axios & async/await
+✔ Built dynamic UI
+
+---
