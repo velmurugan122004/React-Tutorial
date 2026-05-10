@@ -4,7 +4,7 @@ import { Header } from '../../../components/Header';
 import './HomePages.css';
 import { ProductsGrid } from './ProductsGrid';
 //import {products} from "../../../ecommerce-project-main/data/products"
-export function HomePages({ cart }) {
+export function HomePages({ cart ,loadCart}) {
   const [products, setProducts] = useState([]);
 
   /*fetch('http://localhost:3000/api/products').then((response)=>{
@@ -38,7 +38,7 @@ export function HomePages({ cart }) {
       <Header cart={cart} />
 
       <div className="home-page">
-        <ProductsGrid products={products} />
+        <ProductsGrid products={products}loadCart={loadCart}/>
       </div>
     </>
   );
