@@ -12,7 +12,7 @@ import { useState, useEffect } from 'react';
 // - Then, you can try running axios.post('/api/reset') in the Console.
 window.axios=axios;
 console.log(axios.post('/api/reset'));
- - Now, in the Console, we can run window.axios.post(...)
+//- Now, in the Console, we can run window.axios.post(...)
 // - And JavaScript has another shortcut we can use. If we just type
 //   "axios", this is a shortcut for "window.axios"
 // - That's why the code window.axios = axios; lets us use "axios"

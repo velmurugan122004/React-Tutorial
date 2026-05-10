@@ -209,3 +209,10 @@
   margin-top: 20px;
   margin-bottom: 19px;
 }
+
+.saveButton{
+  margin-left: 5px;
+}
+.updateButton{
+  width: 50px;
+}
