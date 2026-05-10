@@ -1516,3 +1516,240 @@ npm run dev
 ✔ Built dynamic UI
 
 ---
+# 📚 Lesson 9: Data Mutation & Backend Requests
+
+---
+
+## 📂 Lesson Overview
+
+In this lesson, you learn how to **modify backend data** from your React app.
+
+👉 You will learn:
+
+* Data Mutation
+* HTTP request types
+* Add, update, delete data
+* Dependency array in `useEffect`
+* Navigation using `useNavigate()`
+
+---
+
+## 🧠 Concepts Covered (Lesson 9)
+
+* GET request
+* POST request
+* PUT request
+* DELETE request
+* Axios requests
+* Dependency array
+* `useNavigate()` hook
+
+---
+
+## 🔄 1. What is Data Mutation?
+
+👉 Data Mutation = changing data in backend
+
+Examples:
+
+* Add product to cart
+* Update quantity
+* Delete product
+* Create order
+
+---
+
+## 🌐 2. Types of HTTP Requests
+
+| Request | Purpose              |
+| ------- | -------------------- |
+| GET     | Get data             |
+| POST    | Create new data      |
+| PUT     | Update existing data |
+| DELETE  | Remove data          |
+
+---
+
+# 📥 3. GET Request (Fetch Data)
+
+```jsx id="l9c1"
+const response = await axios.get(
+  'http://localhost:3000/cart'
+);
+```
+
+👉 Used to load data from backend
+
+---
+
+# ➕ 4. POST Request (Create Data)
+
+👉 Add product to cart
+
+```jsx id="l9c2"
+await axios.post(
+  'http://localhost:3000/cart',
+  {
+    productId: '123',
+    quantity: 1
+  }
+);
+```
+
+👉 Creates new data in backend
+
+---
+
+# ✏️ 5. PUT Request (Update Data)
+
+👉 Update cart quantity
+
+```jsx id="l9c3"
+await axios.put(
+  'http://localhost:3000/cart/123',
+  {
+    quantity: 3
+  }
+);
+```
+
+👉 Updates existing data
+
+---
+
+# ❌ 6. DELETE Request (Remove Data)
+
+👉 Delete product from cart
+
+```jsx id="l9c4"
+await axios.delete(
+  'http://localhost:3000/cart/123'
+);
+```
+
+👉 Removes data from backend
+
+---
+
+# ⚛️ 7. Dependency Array in useEffect
+
+```jsx id="l9c5"
+useEffect(()=>{
+  calculateTotal();
+},[cart]);
+```
+
+👉 Runs effect whenever `cart` changes
+
+👉 Useful for:
+
+* Payment summary
+* Total price
+* Auto updates
+
+---
+
+# 🧭 8. useNavigate Hook
+
+👉 Navigate pages using code
+
+---
+
+### Import
+
+```jsx id="l9c6"
+import { useNavigate } from 'react-router-dom';
+```
+
+---
+
+### Usage
+
+```jsx id="l9c7"
+const navigate = useNavigate();
+
+function placeOrder(){
+  navigate('/orders');
+}
+```
+
+👉 Redirect user after actions
+
+Example:
+
+* After login
+* After payment
+* After order placed
+
+---
+
+# 🧩 9. Real Example Flow
+
+👉 User clicks **Add to Cart**
+
+→ POST request
+
+👉 User changes quantity
+
+→ PUT request
+
+👉 User removes item
+
+→ DELETE request
+
+👉 Order success
+
+→ navigate(`/orders`)
+
+---
+
+# 📁 Example Project Structure
+
+```id="jlwmck"
+src/
+ ├── pages/
+ │    ├── Checkout.jsx
+ │    ├── Orders.jsx
+ ├── components/
+ │    ├── CartItem.jsx
+ │    ├── PaymentSummary.jsx
+```
+
+---
+
+# ▶️ How to Run
+
+```bash id="l6y2r4"
+npm run dev
+```
+
+---
+
+# 🔥 Output
+
+* Products added to cart
+* Cart updates automatically
+* Products deleted dynamically
+* Redirect after order placed
+
+---
+
+# 📌 Key Learning
+
+👉 POST = create data
+👉 PUT = update data
+👉 DELETE = remove data
+👉 Dependency array = auto updates
+👉 useNavigate = navigation using code
+
+---
+
+# 🔥 Lesson 9 Summary
+
+✔ Learned CRUD operations
+✔ Connected frontend with backend updates
+✔ Updated UI dynamically
+✔ Navigated between pages programmatically
+
+---
+
